@@ -6,21 +6,21 @@
     image_name: "yourdockerhub/devops-demo:1.0"
 
   tasks:
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
-        update_cache: yes
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
     - name: Install Docker Compose
       apt:
         name: docker-compose
         state: present
 
-    - name: Pull latest image
+    - name: Run container from local image
       docker_container:
         name: devops-app
-        image: "{{ image_name }}"
+        image: "devops-demo-app"
         state: started
         restart_policy: always
         ports:
