@@ -1,0 +1,27 @@
+- name: Deploy App
+  hosts: localhost
+  become: yes
+
+  vars:
+    image_name: "yourdockerhub/devops-demo:1.0"
+
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Pull latest image
+      docker_container:
+        name: devops-app
+        image: "{{ image_name }}"
+        state: started
+        restart_policy: always
+        ports:
+          - "3000:3000"

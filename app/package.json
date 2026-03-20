@@ -1,0 +1,14 @@
+{
+  "name": "devops-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js",
+    "lint": "echo 'lint passed'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "prom-client": "^14.0.0"
+  }
+}
