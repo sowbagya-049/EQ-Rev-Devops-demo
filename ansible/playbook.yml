@@ -1,26 +1,20 @@
 - name: Deploy App
   hosts: localhost
-  
 
   vars:
-    image_name: "yourdockerhub/devops-demo:1.0"
+    image_name: "{{ lookup('env', 'DOCKER_USERNAME') }}/devops-demo-app:latest"
 
   tasks:
-    - name: Ensure Docker is running
-      service:
-        name: docker
-        state: started
-        enabled: yes
 
-    - name: Install Docker Compose
-      apt:
-        name: docker-compose
-        state: present
+    - name: Pull latest Docker image
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
 
-    - name: Run container from local image
+    - name: Run container
       docker_container:
         name: devops-app
-        image: "devops-demo-app"
+        image: "{{ image_name }}"
         state: started
         restart_policy: always
         ports:
