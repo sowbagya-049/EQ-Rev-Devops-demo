@@ -1,6 +1,6 @@
 - name: Deploy App
   hosts: localhost
-  become: yes
+  
 
   vars:
     image_name: "yourdockerhub/devops-demo:1.0"
