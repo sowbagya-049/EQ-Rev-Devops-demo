@@ -7,8 +7,8 @@ on:
 
 env:
   IMAGE_NAME: devops-demo-app
-  DOCKER_USERNAME: sowbagya15
-  DOCKER_PASSWORD: Sowbagya@2005
+  DOCKER_USERNAME: 
+  DOCKER_PASSWORD: 
 
 jobs:
   build-test-deploy:
